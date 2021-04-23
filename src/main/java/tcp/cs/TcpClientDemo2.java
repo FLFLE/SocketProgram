@@ -1,4 +1,4 @@
-package socketdemo;
+package tcp.cs;
 
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package socketdemo;
+package tcp.cs;
 
 import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
@@ -52,6 +52,6 @@ public class TcpClient {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        TcpClient client = new TcpClient("127.0.0.1",64201);
+        TcpClient client = new TcpClient("127.0.0.1", 64201);
     }
 }

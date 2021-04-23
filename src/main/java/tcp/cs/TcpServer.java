@@ -1,4 +1,4 @@
-package socketdemo;
+package tcp.cs;
 
 import lombok.AllArgsConstructor;
 
@@ -55,6 +55,9 @@ public class TcpServer {
     }
 
     public static void main(String[] args) {
-        socket.program.SocketProgram.TcpServer server = new socket.program.SocketProgram.TcpServer(64201);
+       TcpServer server = new TcpServer(64201);
+       while (true){
+           System.out.println(server.messageRcv());
+       }
     }
 }

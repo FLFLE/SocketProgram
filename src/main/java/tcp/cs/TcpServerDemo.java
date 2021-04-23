@@ -1,4 +1,4 @@
-package socketdemo;
+package tcp.cs;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
