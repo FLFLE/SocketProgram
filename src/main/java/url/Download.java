@@ -2,6 +2,7 @@ package url;
 
 import lombok.SneakyThrows;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -16,7 +17,7 @@ public class Download {
     public void download(String sourceAddress) {
         URL url = new URL(sourceAddress);
         byte[] buffer = new byte[1024];
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
         try (InputStream ins = connection.getInputStream()) {
             try (OutputStream os = new FileOutputStream("sjl.html")) {
                 while ((ins.read(buffer)) != -1) {
