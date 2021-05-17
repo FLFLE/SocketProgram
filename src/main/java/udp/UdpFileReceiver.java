@@ -1,5 +1,7 @@
 package udp;
 
+
+
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.net.DatagramPacket;
@@ -11,16 +13,18 @@ import java.net.DatagramSocket;
  */
 public class UdpFileReceiver {
     public static void main(String[] args) {
-        try (DatagramSocket socket = new DatagramSocket(64201)) {
+        try (DatagramSocket socket = new DatagramSocket(64202)) {
             byte[] buffer = new byte[1024];
-            OutputStream os = new FileOutputStream("copy.rtf");
-            while (true){
-                DatagramPacket packet = new DatagramPacket(buffer,0,buffer.length);
+            OutputStream os = new FileOutputStream("udpfilercv/connect.jar");
+            while (true) {
+                DatagramPacket packet = new DatagramPacket(buffer, 0, buffer.length);
                 socket.receive(packet);
-                os.write(packet.getData());
+                if (packet.getLength() == 0) {
+                    break;
+                }
+                os.write(packet.getData(), 0, packet.getLength());
             }
-
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

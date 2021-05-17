@@ -14,21 +14,28 @@ import java.net.URL;
  */
 public class Download {
     @SneakyThrows
-    public void download(String sourceAddress) {
+    public void download(String sourceAddress, int id) {
         URL url = new URL(sourceAddress);
         byte[] buffer = new byte[1024];
-        HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         try (InputStream ins = connection.getInputStream()) {
-            try (OutputStream os = new FileOutputStream("sjl.html")) {
-                while ((ins.read(buffer)) != -1) {
-                    os.write(buffer, 0, buffer.length);
+            try (OutputStream os = new FileOutputStream("download/" + id + ".png")) {
+                int length = 0;
+                while ((length = ins.read(buffer)) != -1) {
+                    os.write(buffer, 0, length);
+                    os.flush();
                 }
+
             }
-        }connection.disconnect();
+        }
     }
 
     public static void main(String[] args) {
         Download source = new Download();
-        source.download("https://shaojiale.cn/?p=193");
+        String url;
+        for (int i = 1; i <= 116; i++) {
+            url = "http://s3.ananas.chaoxing.com/doc/8d/94/ca/96d2cc98650f4fbd808c4a32201f5402/thumb/" + i + ".png";
+            source.download(url, i);
+        }
     }
 }

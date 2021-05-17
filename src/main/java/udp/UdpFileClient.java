@@ -1,5 +1,7 @@
 package udp;
 
+
+
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.DatagramPacket;
@@ -14,15 +16,17 @@ import java.net.UnknownHostException;
 public class UdpFileClient {
     public static void main(String[] args) throws UnknownHostException {
         InetAddress address = InetAddress.getByName("127.0.0.1");
-        try(DatagramSocket socket = new DatagramSocket()){
-            try(InputStream ins = new FileInputStream("C:/MY DOWNLOAD/QQ/QQLicense.rtf")){
+        try (DatagramSocket socket = new DatagramSocket()) {
+            try (InputStream ins = new FileInputStream("C:/connect.jar")) {
                 byte[] buffer = new byte[1024];
-                while ((ins.read(buffer,0,buffer.length))!=-1){
-                    DatagramPacket packet = new DatagramPacket(buffer,0,buffer.length,address,64201);
+                while ((ins.read(buffer, 0, buffer.length)) != -1) {
+                    DatagramPacket packet = new DatagramPacket(buffer, 0, buffer.length, address, 64201);
                     socket.send(packet);
                 }
+                DatagramPacket packet = new DatagramPacket(new byte[1024], 0, 0, address, 64201);
+                socket.send(packet);
             }
-        }catch (Exception e ){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -50,7 +50,6 @@ public class ChatRoomServer {
                     ins.read(buffer);
                     message = new String(buffer);
                     System.out.println(message);
-
                     //将消息转发给所有用户
                     for (Socket s : socketList) {
                         if (s != socket) {

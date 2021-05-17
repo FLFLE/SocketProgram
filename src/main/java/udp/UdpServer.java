@@ -3,7 +3,6 @@ package udp;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.Arrays;
 
 /**
  * @author zengfanyu
@@ -13,7 +12,7 @@ public class UdpServer {
     public static void main(String[] args) {
 
         String message;
-        //服务器端需要开放端口
+        //服务器端开放端口
         try (DatagramSocket serverSocket = new DatagramSocket(64201)) {
             while (true) {
                 byte[] buffer = new byte[1024];
@@ -24,6 +23,7 @@ public class UdpServer {
                 //拆开数据包得到内容
                 message = new String(packet.getData());
                 int sourcePort = packet.getPort();
+//                System.out.println(sourcePort);
                 InetAddress sourceAddress = packet.getAddress();
 
 
